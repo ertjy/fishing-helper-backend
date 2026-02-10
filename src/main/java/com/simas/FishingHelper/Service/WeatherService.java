@@ -2,9 +2,9 @@ package com.simas.FishingHelper.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.simas.FishingHelper.model.dto.CatchDto;
+import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import com.simas.FishingHelper.Utilities.ParameterStringBuilder;
-import com.simas.FishingHelper.model.dto.WeatherDto;
+import com.simas.FishingHelper.Model.Dtos.WeatherDto;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.shredzone.commons.suncalc.MoonIllumination;
 import org.slf4j.Logger;

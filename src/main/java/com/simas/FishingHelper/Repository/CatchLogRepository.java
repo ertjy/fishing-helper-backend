@@ -1,6 +1,6 @@
 package com.simas.FishingHelper.Repository;
 
-import com.simas.FishingHelper.model.dto.CatchDto;
+import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

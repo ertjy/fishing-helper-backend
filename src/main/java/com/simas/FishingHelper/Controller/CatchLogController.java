@@ -1,8 +1,8 @@
 package com.simas.FishingHelper.Controller;
 
-import com.simas.FishingHelper.model.dto.CatchDto;
+import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import com.simas.FishingHelper.Service.CatchLogService;
-import com.simas.FishingHelper.model.dto.WeatherDto;
+import com.simas.FishingHelper.Model.Dtos.WeatherDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

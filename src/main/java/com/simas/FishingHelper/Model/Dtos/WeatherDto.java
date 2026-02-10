@@ -1,4 +1,4 @@
-package com.simas.FishingHelper.model.dto;
+package com.simas.FishingHelper.Model.Dtos;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

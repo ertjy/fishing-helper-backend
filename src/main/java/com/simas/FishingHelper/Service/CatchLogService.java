@@ -1,7 +1,7 @@
 package com.simas.FishingHelper.Service;
 
 
-import com.simas.FishingHelper.model.dto.CatchDto;
+import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import com.simas.FishingHelper.Repository.CatchLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
