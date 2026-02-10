@@ -17,8 +17,8 @@ public class CatchDto {
     private Long id;
     private String species;
     private LocalDateTime dateTime;
-    private String lon;
-    private String lat;
+    private Double lon;
+    private Double lat;
     private double weight;
     private String baitUsed;
 

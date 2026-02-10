@@ -35,14 +35,13 @@ public class WeatherService {
 
         Map<String, String> params = new HashMap<>();
         params.put("appid", api_key);
-        params.put("lat", catchDto.getLat());
-        params.put("lon", catchDto.getLon());
+        params.put("lat", catchDto.getLat().toString());
+        params.put("lon", catchDto.getLon().toString());
         params.put("units", "metric");
 
         String queryString = ParameterStringBuilder.getParamsString(params);
 
         URL request_url = new URL(api_url + "?" + queryString);
-        logger.info("Calling OpenWeather API: " +  request_url);
 
         StringBuilder response = new StringBuilder();
 
@@ -75,7 +74,7 @@ public class WeatherService {
                 responseJson.path("wind").path("speed").asDouble(),
                 responseJson.path("main").path("pressure").asInt(),
                 moonPhase);
-        logger.info("Received data: " + builtWeatherDto);
+        logger.info("Built data: " + builtWeatherDto);
 
         return builtWeatherDto;
     }

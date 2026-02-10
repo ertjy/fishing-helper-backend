@@ -1,5 +1,7 @@
 package com.simas.FishingHelper.Controller;
 
+import com.simas.FishingHelper.Analysis.DataAnalysisService;
+import com.simas.FishingHelper.Model.Dtos.BaitSuggestionDto;
 import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import com.simas.FishingHelper.Service.CatchLogService;
 import com.simas.FishingHelper.Model.Dtos.WeatherDto;
@@ -16,18 +18,19 @@ import static com.simas.FishingHelper.Service.WeatherService.getCurrentWeather;
 @RequestMapping("/api/fish-logs")
 @RequiredArgsConstructor
 public class CatchLogController {
-    private final CatchLogService service;
+    private final CatchLogService catchLogService;
+    private final DataAnalysisService dataAnalysisService;
 
     @PostMapping
     public ResponseEntity<CatchDto> logCatch(@RequestBody CatchDto catchDto) throws IOException {
         WeatherDto weather = getCurrentWeather(catchDto);
         catchDto.setWeather(null);
         catchDto.setWeather(weather);
-        return ResponseEntity.ok(service.save(catchDto));
+        return ResponseEntity.ok(catchLogService.save(catchDto));
     }
 
     @GetMapping
     public ResponseEntity<List<CatchDto>> getAllCatchLogs() {
-        return ResponseEntity.ok(service.getAll());
+        return ResponseEntity.ok(catchLogService.getAll());
     }
 }
