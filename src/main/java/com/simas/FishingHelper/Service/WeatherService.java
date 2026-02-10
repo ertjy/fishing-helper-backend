@@ -41,7 +41,7 @@ public class WeatherService {
 
         String queryString = ParameterStringBuilder.getParamsString(params);
 
-        URL request_url = new URL(api_url.toString() + "?" + queryString);
+        URL request_url = new URL(api_url + "?" + queryString);
         logger.info("Calling OpenWeather API: " +  request_url);
 
         StringBuilder response = new StringBuilder();
