@@ -1,7 +1,5 @@
 package com.simas.FishingHelper.Controller;
 
-import com.simas.FishingHelper.Analysis.DataAnalysisService;
-import com.simas.FishingHelper.Model.Dtos.BaitSuggestionDto;
 import com.simas.FishingHelper.Model.Dtos.CatchDto;
 import com.simas.FishingHelper.Service.CatchLogService;
 import com.simas.FishingHelper.Model.Dtos.WeatherDto;
@@ -19,7 +17,6 @@ import static com.simas.FishingHelper.Service.WeatherService.getCurrentWeather;
 @RequiredArgsConstructor
 public class CatchLogController {
     private final CatchLogService catchLogService;
-    private final DataAnalysisService dataAnalysisService;
 
     @PostMapping
     public ResponseEntity<CatchDto> logCatch(@RequestBody CatchDto catchDto) throws IOException {

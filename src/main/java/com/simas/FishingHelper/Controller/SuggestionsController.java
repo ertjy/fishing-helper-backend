@@ -1,7 +1,6 @@
 package com.simas.FishingHelper.Controller;
 
 import com.simas.FishingHelper.Analysis.DataAnalysisService;
-import com.simas.FishingHelper.Service.CatchLogService;
 import com.simas.FishingHelper.exceptions.NoDataException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/suggestions")
 @RequiredArgsConstructor
 public class SuggestionsController {
-    private final CatchLogService catchLogService;
     private final DataAnalysisService dataAnalysisService;
 
     @GetMapping("/bait-suggestions")
