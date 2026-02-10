@@ -1,4 +1,4 @@
-package com.simas.FishingHelper;
+package com.simas.FishingHelper.model.dto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CatchLog {
+public class CatchDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +23,5 @@ public class CatchLog {
     private String baitUsed;
 
     @Embedded
-    private WeatherLog weather;
+    private WeatherDto weather;
 }

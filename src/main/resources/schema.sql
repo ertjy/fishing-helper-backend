@@ -7,5 +7,7 @@ CREATE TABLE catch_log (
     bait_used VARCHAR(255),
     weather_description VARCHAR(255),
     weather_temperature DOUBLE,
-    weather_wind_speed DOUBLE
+    weather_wind_speed DOUBLE,
+    weather_pressure INT,
+    weather_moon_phase DOUBLE
 );

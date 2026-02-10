@@ -22,6 +22,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'io.github.cdimascio:java-dotenv:5.2.2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.shredzone.commons:commons-suncalc:3.11'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	runtimeOnly 'com.h2database:h2:2.4.240'
 	testImplementation 'com.h2database:h2:2.4.240'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -35,11 +37,9 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-	// Add JVM argument for Java module reflection
 	jvmArgs += ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
 }
 
 tasks.named('bootRun') {
-	// Add JVM argument for Java module reflection
 	jvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
 }

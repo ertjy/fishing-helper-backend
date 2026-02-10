@@ -2,11 +2,11 @@ package com.simas.FishingHelper.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.simas.FishingHelper.Controller.LoggingController;
+import com.simas.FishingHelper.model.dto.CatchDto;
 import com.simas.FishingHelper.Utilities.ParameterStringBuilder;
-import com.simas.FishingHelper.Utilities.HttpUtilities;
-import com.simas.FishingHelper.WeatherLog;
+import com.simas.FishingHelper.model.dto.WeatherDto;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.shredzone.commons.suncalc.MoonIllumination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,17 +26,17 @@ import static com.simas.FishingHelper.Utilities.HttpUtilities.createUrl;
 @Service
 public class WeatherService {
 
-    public static WeatherLog getCurrentWeather(String latitude, String longitude) throws IOException {
-        Logger logger = LoggerFactory.getLogger(WeatherService.class);
+    static Logger logger = LoggerFactory.getLogger(WeatherService.class);
 
+    public static WeatherDto getCurrentWeather(CatchDto catchDto) throws IOException {
         final Dotenv dotenv = Dotenv.configure().load();
         final String api_key = dotenv.get("WEATHER_API_KEY");
         final URL api_url = createUrl(dotenv.get("WEATHER_API_URL"));
 
         Map<String, String> params = new HashMap<>();
         params.put("appid", api_key);
-        params.put("lat", latitude);
-        params.put("lon", longitude);
+        params.put("lat", catchDto.getLat());
+        params.put("lon", catchDto.getLon());
         params.put("units", "metric");
 
         String queryString = ParameterStringBuilder.getParamsString(params);
@@ -57,7 +58,6 @@ public class WeatherService {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
 
-
         String line;
         while ((line = in.readLine()) != null) {
             response.append(line);
@@ -68,12 +68,21 @@ public class WeatherService {
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode responseJson = mapper.readTree(response.toString());
-        WeatherLog returnedData = new WeatherLog(responseJson.path("weather").path(0).path("description").asText(),
+        double moonPhase = calculateMoonPhase(catchDto.getDateTime());
+
+        WeatherDto builtWeatherDto = new WeatherDto(responseJson.path("weather").path(0).path("description").asText(),
                 responseJson.path("main").path("temp").asDouble(),
-                responseJson.path("wind").path("speed").asDouble());
-        logger.info("Received data: " + returnedData);
-        return new WeatherLog(responseJson.path("weather").path(0).path("description").asText(),
-                responseJson.path("main").path("temp").asDouble(),
-                responseJson.path("wind").path("speed").asDouble());
+                responseJson.path("wind").path("speed").asDouble(),
+                responseJson.path("main").path("pressure").asInt(),
+                moonPhase);
+        logger.info("Received data: " + builtWeatherDto);
+
+        return builtWeatherDto;
+    }
+
+    static double calculateMoonPhase(LocalDateTime currentTime) {
+        MoonIllumination illumination = MoonIllumination.compute().on(currentTime).execute();
+
+        return illumination.getFraction();
     }
 }

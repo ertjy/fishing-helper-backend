@@ -1,4 +1,4 @@
-package com.simas.FishingHelper;
+package com.simas.FishingHelper.model.dto;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class WeatherLog {
+public class WeatherDto {
     private String description;
     private double temperature;
     private double windSpeed;
+    private int pressure;
+    private double moonPhase;
 }
 
 

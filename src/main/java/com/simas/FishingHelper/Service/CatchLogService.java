@@ -1,7 +1,7 @@
 package com.simas.FishingHelper.Service;
 
 
-import com.simas.FishingHelper.CatchLog;
+import com.simas.FishingHelper.model.dto.CatchDto;
 import com.simas.FishingHelper.Repository.CatchLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ import java.util.List;
 public class CatchLogService {
     private final CatchLogRepository repository;
 
-    public CatchLog save(CatchLog fishCatch) {
+    public CatchDto save(CatchDto fishCatch) {
         return repository.save(fishCatch);
     }
 
-    public List<CatchLog> getAll() {
+    public List<CatchDto> getAll() {
         return repository.findAll();
     }
 }

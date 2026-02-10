@@ -1,8 +1,8 @@
 package com.simas.FishingHelper.Controller;
 
-import com.simas.FishingHelper.CatchLog;
+import com.simas.FishingHelper.model.dto.CatchDto;
 import com.simas.FishingHelper.Service.CatchLogService;
-import com.simas.FishingHelper.WeatherLog;
+import com.simas.FishingHelper.model.dto.WeatherDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +19,15 @@ public class CatchLogController {
     private final CatchLogService service;
 
     @PostMapping
-    public ResponseEntity<CatchLog> logCatch(@RequestBody CatchLog catchLog) throws IOException {
-        WeatherLog weather = getCurrentWeather(catchLog.getLat(), catchLog.getLon());
-        catchLog.setWeather(null);
-        catchLog.setWeather(weather);
-        return ResponseEntity.ok(service.save(catchLog));
+    public ResponseEntity<CatchDto> logCatch(@RequestBody CatchDto catchDto) throws IOException {
+        WeatherDto weather = getCurrentWeather(catchDto);
+        catchDto.setWeather(null);
+        catchDto.setWeather(weather);
+        return ResponseEntity.ok(service.save(catchDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<CatchLog>> getAllCatchLogs() {
+    public ResponseEntity<List<CatchDto>> getAllCatchLogs() {
         return ResponseEntity.ok(service.getAll());
     }
 }
