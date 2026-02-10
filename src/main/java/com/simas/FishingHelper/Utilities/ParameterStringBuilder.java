@@ -1,6 +1,5 @@
 package com.simas.FishingHelper.Utilities;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
