@@ -19,7 +19,7 @@ public class SuggestionsController {
     @GetMapping("/bait-suggestions")
     public ResponseEntity<?> getBestBaitForSpecie(@RequestBody String specie) {
         try {
-            return ResponseEntity.ok(dataAnalysisService.analyseBestBaitForSpecie(specie));
+            return ResponseEntity.ok(dataAnalysisService.queryBestBaitForSpecie(specie));
         } catch (NoDataException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong: " + e.getMessage());
         }

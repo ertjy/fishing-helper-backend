@@ -23,11 +23,11 @@ public class CatchLogController {
         WeatherDto weather = getCurrentWeather(catchDto);
         catchDto.setWeather(null);
         catchDto.setWeather(weather);
-        return ResponseEntity.ok(catchLogService.save(catchDto));
+        return ResponseEntity.ok(catchLogService.saveCatch(catchDto));
     }
 
     @GetMapping
     public ResponseEntity<List<CatchDto>> getAllCatchLogs() {
-        return ResponseEntity.ok(catchLogService.getAll());
+        return ResponseEntity.ok(catchLogService.getAllCatches());
     }
 }

@@ -13,11 +13,11 @@ import java.util.List;
 public class CatchLogService {
     private final CatchLogRepository repository;
 
-    public CatchDto save(CatchDto fishCatch) {
+    public CatchDto saveCatch(CatchDto fishCatch) {
         return repository.save(fishCatch);
     }
 
-    public List<CatchDto> getAll() {
+    public List<CatchDto> getAllCatches() {
         return repository.findAll();
     }
 }
